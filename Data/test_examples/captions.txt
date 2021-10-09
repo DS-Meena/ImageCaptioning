@@ -1,0 +1,3 @@
+image,caption
+dog.jpg,Dog on a beach by the ocean
+child.jpg,child holding red frisbee outdoors
