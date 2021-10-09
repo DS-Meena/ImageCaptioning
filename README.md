@@ -1,11 +1,12 @@
 # ImageCaptioning_Hindi
+
  For our B.tech major project, we are creating a image captioning model that will be able to generate image captions in hindi language. 
 
 ** -> steps to follow
 
 For english captions :-
 
-1. flikr 8k dataset = (https://www.kaggle.com/adityajn105/flickr8k)
+1. flikr 8k dataset = (<https://www.kaggle.com/adityajn105/flickr8k>)
 **(for images download from here, just simple kaggle dataset)
 
 For hindi Captions :-
@@ -94,6 +95,7 @@ Data folder contains our data, subfolder /images contains the images (from kaggl
 /Data folder has our image captions files also .txt format.
 
 ../
+
     ImageCaptioning_Hindi/
        get_laoder.py
        Image_annotations_Hindi.ipynb
