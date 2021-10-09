@@ -86,3 +86,25 @@ accuracy of model using machine translation > acc using crowsourcing and human t
 training -
 	image feature input, text feature input
 	merge and prediction output
+
+## Final file structure
+
+ImageCaptioning_Hindi is our main folder it contains the code and model.
+Data folder contains our data, subfolder /images contains the images (from kaggle dataset) and /test_examples contains some test images for our model.
+/Data folder has our image captions files also .txt format.
+
+../
+    ImageCaptioning_Hindi/
+       get_laoder.py
+       Image_annotations_Hindi.ipynb
+       utils.py
+    Data/
+        flickr8k/
+            images/
+            test_examples/
+            captions.txt
+            Clean-1Sentences_withComma.txt
+            Clean-5Sentences_withComma.txt
+            Unclean-1Sentence.txt
+            Unclean-5Sentence.txt
+            
