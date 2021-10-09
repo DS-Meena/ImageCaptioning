@@ -66,12 +66,12 @@ class Vocabulary:
                     self.stoi[word] = idx    # add words
                     self.itos[idx] = word
                     idx += 1
-    
+
     def numericalize(self, text):
         """
             input : sentence
         """
-        # tokenize the sentence
+        # tokenize the sentence        
         tokenized_text = self.tokenizer_eng(text)
 
         # convert to int using stoi
@@ -79,22 +79,22 @@ class Vocabulary:
             self.stoi[token] if token in self.stoi else self.stoi["<UNK>"]
             for token in tokenized_text
         ]
-    
+
 
 class FlickrDataset(Dataset):
-    def __init__(self, root_dir, captions_file, transform=None, freq_threshold=1):  # previous 5
+    def __init__(self, root_dir, captions_file, transform=None, freq_threshold=5):   # initially 5
         """
             input : images path, captions file path, transfrom if have any, frequency threshold
             ouput: initialize images, captions dataframe, and vocabulary
         """
         self.root_dir = root_dir
-        self.df = pd.read_csv(captions_file, encoding = 'utf-8')  # change it so that it can read with spaces
+        self.df = pd.read_csv(captions_file)  # change it so that it can read with spaces
         self.transform = transform
 
         # Get img, caption columns
         self.imgs = self.df["image"]
         self.captions = self.df["caption"]
-        
+
         # Initialize vocabulary instance
         self.vocab = Vocabulary(freq_threshold)
         
@@ -115,7 +115,7 @@ class FlickrDataset(Dataset):
         # get the caption and image id
         caption = self.captions[index]
         img_id = self.imgs[index]
-
+        
         # in hindi captions, image id is given without .jpg so added .jpg
         img_id += '.jpg'
         
@@ -131,8 +131,10 @@ class FlickrDataset(Dataset):
         numericalized_caption += self.vocab.numericalize(caption)   # words
         numericalized_caption.append(self.vocab.stoi["<EOS>"])      # and
         
+        # both are same here also
+#         print(caption)
 #         print(numericalized_caption)
-        
+    
         # return the image and numericalized caption
         return img, torch.tensor(numericalized_caption)
 
@@ -169,11 +171,11 @@ def get_loader(
 ):
     # get dataset
     dataset = FlickrDataset(root_folder, annotation_file, transform=transform)
-    
+
     # pad the indexes
     pad_idx = dataset.vocab.stoi["<PAD>"]
-    
-#     print(dataset.vocab.stoi, dataset.vocab.itos)
+
+#     print(dataset.vocab.stoi)
     
     # create a pytorch dataloader
     loader = DataLoader(
@@ -189,7 +191,6 @@ def get_loader(
 
 
 if __name__ == "__main__":
-    
     transform = transforms.Compose(
         [transforms.Resize((224, 224)), 
          transforms.ToTensor(),]
@@ -197,7 +198,7 @@ if __name__ == "__main__":
     
     # get the dataloader and dataset
     loader, dataset = get_loader(
-        "../Data/test_examples/images/", "../Data/test_examples/captions_hindi.txt", transform=transform
+        "flickr8k/images/", "flickr8k/captions.txt", transform=transform
     )
 
     # print image shapes and captions shape
