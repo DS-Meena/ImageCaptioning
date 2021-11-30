@@ -78,13 +78,13 @@ accuracy of model using machine translation > acc using crowsourcing and human t
 
 - RNN-LSTM is used to encode text data and Pretrained cnn to encode image data.
 
-- addition is used to combine two encoded inputs (iamge feature vector and word vector).
+- addition is used to combine two encoded inputs (image feature vector and word vector).
 
-- images are converted into feature vector (using pretrianed CNN or vgg 16) model before feeding into model
+- images are converted into feature vector (using pretrianed CNN or vgg 16 or inception v3) model before feeding into model
 
 - removing stop words.
 
-training -
+training -	
 	image feature input, text feature input
 	merge and prediction output
 
@@ -109,4 +109,28 @@ Data folder contains our data, subfolder /images contains the images (from kaggl
             Clean-5Sentences_withComma.txt
             Unclean-1Sentence.txt
             Unclean-5Sentence.txt
+            
+
+../
+
+    Image Captioning in Hindi/
+       Data Pre-processing.ipynb
+       Feature Extraction.ipynb
+       features_utility.py
+       Model_training.ipynb
+       tokenizer_utility.py
+       Vgg16features.pkl
+       Inception3features.pkl
+    Data/
+        custom_data/
+            test_iamges/
+        flickr8k/
+            images/
+            captions.txt
+            Clean-1Sentences_withComma.txt
+            Clean-5Sentences_withComma.txt
+            Unclean-1Sentence.txt
+            Unclean-5Sentence.txt
+            train_images.txt
+            test_images.txt
             
